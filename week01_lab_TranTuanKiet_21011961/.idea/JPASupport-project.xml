@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoGeneratorSettingsState">
+    <option name="ignoredFields">
+      <set>
+        <option value="" />
+      </set>
+    </option>
+    <option name="moduleName" value="week01_lab_TranTuanKiet_21011961" />
+    <option name="moduleNameToSettings">
+      <map>
+        <entry key="week01_lab_TranTuanKiet_21011961">
+          <value>
+            <ModuleSettings>
+              <option name="controllerParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+              <option name="dtoParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+              <option name="entityPackageName" value="com.jsp.week01_lab_trantuankiet_21011961.models" />
+              <option name="entityParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+              <option name="generateRepository" value="false" />
+              <option name="mapperXmlParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\resources" />
+              <option name="repositoryParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+              <option name="serviceParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+              <option name="voParentDirectory" value="D:\HOC_HANH\TranTuanKiet_WWW_Java\week01_lab_TranTuanKiet_21011961\src\main\java" />
+            </ModuleSettings>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="useJakartaEE" value="true" />
+  </component>
+</project>
