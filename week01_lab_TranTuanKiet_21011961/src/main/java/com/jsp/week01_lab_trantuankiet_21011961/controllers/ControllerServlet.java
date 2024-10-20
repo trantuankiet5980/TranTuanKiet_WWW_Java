@@ -1,6 +1,6 @@
 package com.jsp.week01_lab_trantuankiet_21011961.controllers;
 
-import com.jsp.week01_lab_trantuankiet_21011961.models.Account;
+import com.jsp.week01_lab_trantuankiet_21011961.entities.Account;
 import com.jsp.week01_lab_trantuankiet_21011961.services.AccountService;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -22,21 +22,7 @@ public class ControllerServlet extends HttpServlet {
         String action = request.getParameter("action");
         switch (action) {
             case "addAccount":
-                String fullName = request.getParameter("full_name");
-                String password = request.getParameter("password");
-                String email = request.getParameter("email");
-                String phone = request.getParameter("phone");
-                int status = Integer.parseInt(request.getParameter("status"));
 
-                Account account = new Account();
-                account.setFull_name(fullName);
-                account.setPassword(password);
-                account.setEmail(email);
-                account.setPhone(phone);
-                account.setStatus(status);
-
-                accountService.addAccount(account);
-                response.sendRedirect("success.jsp");
                 break;
 
             case "updateAccount":
