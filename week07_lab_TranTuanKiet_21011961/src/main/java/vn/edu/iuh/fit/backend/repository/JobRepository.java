@@ -7,7 +7,7 @@ import vn.edu.iuh.fit.backend.entities.Job;
 
 import java.util.List;
 
-public interface JobReposotpry extends JpaRepository<Job, Long> {
+public interface JobRepository extends JpaRepository<Job, Long> {
     List<Job> findByCompanyId(Long companyId);
     
     @Query("SELECT j FROM Job j JOIN j.jobSkills js WHERE js.skill.skillName = :skillName")

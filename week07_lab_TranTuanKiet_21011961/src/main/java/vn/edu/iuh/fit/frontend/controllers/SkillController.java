@@ -13,7 +13,7 @@ import vn.edu.iuh.fit.frontend.models.SkillModels;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/skills")
 public class SkillController {
     @Autowired
     private RestTemplate restTemplate;
@@ -25,6 +25,6 @@ public class SkillController {
     public String showSkills(Model model) {
         List<SkillDto> skills = skillModels.getAllSkills();
         model.addAttribute("skills", skills);
-        return "index";
+        return "skills";
     }
 }
