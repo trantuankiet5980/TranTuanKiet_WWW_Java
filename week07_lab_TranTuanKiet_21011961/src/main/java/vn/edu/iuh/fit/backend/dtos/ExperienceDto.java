@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
- * DTO for {@link vn.edu.iuh.fit.backend.entites.Experience}
+ * DTO for {@link vn.edu.iuh.fit.backend.entities.Experience}
  */
 @Getter
 @Setter

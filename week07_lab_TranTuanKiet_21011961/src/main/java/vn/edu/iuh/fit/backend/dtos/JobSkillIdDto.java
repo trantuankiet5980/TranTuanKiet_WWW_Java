@@ -5,7 +5,7 @@ import lombok.*;
 import java.io.Serializable;
 
 /**
- * DTO for {@link vn.edu.iuh.fit.backend.entites.JobSkillId}
+ * DTO for {@link vn.edu.iuh.fit.backend.entities.JobSkillId}
  */
 @Getter
 @Setter

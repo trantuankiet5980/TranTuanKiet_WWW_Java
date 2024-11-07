@@ -1,21 +1,26 @@
-package vn.edu.iuh.fit.backend.entites;
+package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "candidate")
-@SuperBuilder
-@PrimaryKeyJoinColumn(name = "can_id")
-public class Candidate extends User{
+public class Candidate {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+
     @Column(name = "dob", nullable = false)
     private LocalDate dob;
 
@@ -28,13 +33,13 @@ public class Candidate extends User{
     @Column(name = "phone", nullable = false, length = 15)
     private String phone;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "can")
     private List<CandidateSkill> candidateSkills;
 
-    @OneToMany(mappedBy = "candidate", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "candidate")
     private List<Experience> experiences;
 }

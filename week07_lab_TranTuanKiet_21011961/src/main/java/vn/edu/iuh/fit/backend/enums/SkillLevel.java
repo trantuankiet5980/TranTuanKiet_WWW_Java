@@ -1,7 +1,5 @@
 package vn.edu.iuh.fit.backend.enums;
 
-import lombok.ToString;
-
 public enum SkillLevel {
     BEGINNER("BEGINNER"),
     INTERMEDIATE("INTERMEDIATE"),

@@ -1,19 +1,23 @@
-package vn.edu.iuh.fit.backend.entites;
+package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@SuperBuilder
 @Table(name = "company")
-@PrimaryKeyJoinColumn(name = "com_id")
-public class Company extends User{
+public class Company {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comp_id", nullable = false)
+    private Long id;
 
     @Column(name = "about", length = 2000)
     private String about;
@@ -30,11 +34,11 @@ public class Company extends User{
     @Column(name = "web_url")
     private String webUrl;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
-    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company")
     private List<Job> jobs;
 
 }

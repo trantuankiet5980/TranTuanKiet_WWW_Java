@@ -1,20 +1,19 @@
 package vn.edu.iuh.fit.backend.dtos;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 
 /**
- * DTO for {@link vn.edu.iuh.fit.backend.entites.Company}
+ * DTO for {@link vn.edu.iuh.fit.backend.entities.Company}
  */
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 @ToString
-public class CompanyDto extends UserDto implements Serializable {
+public class CompanyDto implements Serializable {
     Long id;
     String about;
     String email;
@@ -26,20 +25,20 @@ public class CompanyDto extends UserDto implements Serializable {
     public String getFullAddress() {
         StringBuilder fullAddress = new StringBuilder();
 
-        if (address.number != null && !address.number.isEmpty()) {
-            fullAddress.append(address.number).append(", ");
+        if (address.getNumber() != null && !address.getNumber().isEmpty()) {
+            fullAddress.append(address.getNumber()).append(", ");
         }
-        if (address.street != null && !address.street.isEmpty()) {
-            fullAddress.append(address.street).append(", ");
+        if (address.getStreet() != null && !address.getStreet().isEmpty()) {
+            fullAddress.append(address.getStreet()).append(", ");
         }
-        if (address.city != null && !address.city.isEmpty()) {
-            fullAddress.append(address.city).append(", ");
+        if (address.getCity() != null && !address.getCity().isEmpty()) {
+            fullAddress.append(address.getCity()).append(", ");
         }
-        if (address.country != null) {
-            fullAddress.append(address.country.getName()).append(", ");
+        if (address.getCountry() != null) {
+            fullAddress.append(address.getCountry().getName()).append(", ");
         }
-        if (address.zipcode != null && !address.zipcode.isEmpty()) {
-            fullAddress.append(address.zipcode);
+        if (address.getZipcode() != null && !address.getZipcode().isEmpty()) {
+            fullAddress.append(address.getZipcode());
         }
 
         if (!fullAddress.isEmpty() && fullAddress.charAt(fullAddress.length() - 1) == ' ') {

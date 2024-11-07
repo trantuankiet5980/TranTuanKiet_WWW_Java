@@ -1,15 +1,18 @@
-package vn.edu.iuh.fit.backend.entites;
+package vn.edu.iuh.fit.backend.entities;
 
 import com.neovisionaries.i18n.CountryCode;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor @NoArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "address")
-@Builder
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +26,6 @@ public class Address {
     private String city;
 
     @Column(name = "country")
-    @Enumerated(EnumType.STRING)
     private CountryCode country;
 
     @Column(name = "number", length = 20)
@@ -32,11 +34,10 @@ public class Address {
     @Column(name = "zipcode", length = 7)
     private String zipcode;
 
-    public Address(String street, String city, CountryCode country, String number, String zipcode) {
-        this.street = street;
-        this.city = city;
-        this.country = country;
-        this.number = number;
-        this.zipcode = zipcode;
-    }
+    @OneToOne(mappedBy = "address")
+    private Candidate candidate;
+
+    @OneToOne(mappedBy = "address")
+    private Company company;
+
 }

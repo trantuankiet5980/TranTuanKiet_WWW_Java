@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * DTO for {@link vn.edu.iuh.fit.backend.entites.Job}
+ * DTO for {@link vn.edu.iuh.fit.backend.entities.Job}
  */
 @Getter
 @Setter

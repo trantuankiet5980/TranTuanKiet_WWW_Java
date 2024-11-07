@@ -3,11 +3,10 @@ package vn.edu.iuh.fit.backend.dtos;
 import lombok.*;
 import vn.edu.iuh.fit.backend.enums.SkillLevel;
 
-
 import java.io.Serializable;
 
 /**
- * DTO for {@link vn.edu.iuh.fit.backend.entites.CandidateSkill}
+ * DTO for {@link vn.edu.iuh.fit.backend.entities.CandidateSkill}
  */
 @Getter
 @Setter

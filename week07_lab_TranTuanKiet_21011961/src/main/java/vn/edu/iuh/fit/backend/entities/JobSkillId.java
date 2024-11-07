@@ -1,20 +1,23 @@
-package vn.edu.iuh.fit.backend.entites;
+package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.Hibernate;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @Embeddable
 public class JobSkillId implements Serializable {
-    private static final long serialVersionUID = -7711763959949302557L;
+    private static final long serialVersionUID = -1361662885267825008L;
     @Column(name = "job_id", nullable = false)
     private Long jobId;
 
