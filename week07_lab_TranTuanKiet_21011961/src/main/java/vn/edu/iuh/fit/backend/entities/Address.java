@@ -40,4 +40,11 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Company company;
 
+    public Address(String s, String quangTrung, String hcm, String s1, CountryCode countryCode) {
+        this.number = s;
+        this.street = quangTrung;
+        this.city = hcm;
+        this.zipcode = s1;
+        this.country = countryCode;
+    }
 }

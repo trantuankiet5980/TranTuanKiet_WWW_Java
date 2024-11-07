@@ -42,4 +42,12 @@ public class Candidate {
 
     @OneToMany(mappedBy = "candidate")
     private List<Experience> experiences;
+
+    public Candidate(String s, LocalDate of, Address add, String s1, String s2) {
+        this.fullName = s;
+        this.dob = of;
+        this.address = add;
+        this.email = s1;
+        this.phone = s2;
+    }
 }
