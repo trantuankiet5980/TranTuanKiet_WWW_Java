@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CandidateService {
     Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDir);
+    List<Candidate> getAll();
 }

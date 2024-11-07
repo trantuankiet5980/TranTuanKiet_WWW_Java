@@ -22,4 +22,10 @@ public class CandidateServiceImpl implements CandidateService {
         Pageable pageable = PageRequest.of(pageNo, pageSize, sort);
         return candidateRepository.findAll(pageable);
     }
+
+    @Override
+    public List<Candidate> getAll() {
+        return candidateRepository.findAll();
+    }
+
 }
