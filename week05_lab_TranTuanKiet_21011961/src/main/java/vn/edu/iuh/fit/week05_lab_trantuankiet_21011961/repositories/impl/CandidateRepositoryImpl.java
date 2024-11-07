@@ -21,7 +21,6 @@ public class CandidateRepositoryImpl implements CandidateRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
-
     public CandidateRepositoryImpl(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
@@ -45,7 +44,7 @@ public class CandidateRepositoryImpl implements CandidateRepository {
             }, keyHolder);
 
             if (result > 0) {
-                candidate.setId(Objects.requireNonNull(keyHolder.getKey()).intValue()); // Lấy ID của bản ghi vừa thêm
+                candidate.setId(Objects.requireNonNull(keyHolder.getKey()).intValue());
                 return candidate;
             }
         } else {
@@ -74,14 +73,14 @@ public class CandidateRepositoryImpl implements CandidateRepository {
     }
 
     @Override
-    public boolean addSkill(Candidate candidate, List<CandidateSkill> candidateSkill) {
+    public boolean addSkill(Candidate candidate, List<CandidateSkill> candidateSkills) {
         String sql = "INSERT INTO candidates_skills(candidate_id, skill_id, level) VALUES(?, ?, ?)";
         List<Object[]> batchArgs = new ArrayList<>();
-        for (CandidateSkill cs : candidateSkill) {
+        for (CandidateSkill cs : candidateSkills) {
             batchArgs.add(new Object[]{candidate.getId(), cs.getSkill().getId(), cs.getLevel()});
         }
         int[] result = jdbcTemplate.batchUpdate(sql, batchArgs);
-        return result.length == candidateSkill.size();
+        return result.length == candidateSkills.size();
     }
 
     @Override
