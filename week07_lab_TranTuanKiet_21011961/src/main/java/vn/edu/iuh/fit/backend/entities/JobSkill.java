@@ -9,8 +9,8 @@ import vn.edu.iuh.fit.backend.enums.SkillLevel;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "job_skill")
 public class JobSkill {
@@ -23,15 +23,15 @@ public class JobSkill {
     private Job job;
 
     @MapsId("skillId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
     @Column(name = "more_infos", length = 1000)
     private String moreInfos;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "skill_level", nullable = false)
+    @Enumerated(EnumType.STRING)
     private SkillLevel skillLevel;
 
 }

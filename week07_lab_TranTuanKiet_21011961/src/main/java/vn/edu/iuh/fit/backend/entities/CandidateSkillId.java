@@ -13,16 +13,16 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class CandidateSkillId implements Serializable {
-    private static final long serialVersionUID = 427147347257572277L;
-    @Column(name = "can_id", nullable = false)
-    private Long canId;
-
+    private static final long serialVersionUID = 957408093275494510L;
     @Column(name = "skill_id", nullable = false)
     private Long skillId;
+
+    @Column(name = "can_id", nullable = false)
+    private Long canId;
 
     @Override
     public boolean equals(Object o) {

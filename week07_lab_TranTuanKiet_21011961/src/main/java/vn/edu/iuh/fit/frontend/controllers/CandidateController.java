@@ -1,47 +1,71 @@
 package vn.edu.iuh.fit.frontend.controllers;
 
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import vn.edu.iuh.fit.backend.entities.Candidate;
-import vn.edu.iuh.fit.backend.repository.CandidateRepository;
-import vn.edu.iuh.fit.backend.services.CandidateService;
+import vn.edu.iuh.fit.backend.dtos.CandidateDto;
+import vn.edu.iuh.fit.backend.dtos.JobDto;
+import vn.edu.iuh.fit.backend.dtos.PageDTO;
+import vn.edu.iuh.fit.frontend.models.CandidateModel;
+import vn.edu.iuh.fit.frontend.models.JobModel;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+@Slf4j
 @Controller
+@RequestMapping("/candidates")
 public class CandidateController {
     @Autowired
-    private CandidateRepository candidateRepository;
+    private CandidateModel candidateModel;
+
     @Autowired
-    private CandidateService candidateServices;
-    @GetMapping("/categories")
-    public String showCandidateList(Model model) {
-        model.addAttribute("candidates", candidateRepository.findAll());
-        return "candidates";
-    }
-    @GetMapping("/candidatePages")
-    public String showCandidateListPaging(Model model,
-                                          @RequestParam("page") Optional<Integer> page,
-                                          @RequestParam("size") Optional<Integer> size) {
-        int currentPage = page.orElse(1);
-        int pageSize = size.orElse(10);
-        Page<Candidate> candidatePage= candidateServices.findAll(
-                currentPage - 1,pageSize,"id","asc");
-        model.addAttribute("candidatePage", candidatePage);
-        int totalPages = candidatePage.getTotalPages();
-        if (totalPages > 0) {
-            List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages)
-                    .boxed()
-                    .collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
+    private JobModel jobModel;
+
+    @RequestMapping({"", "/"})
+    public String getAllCandidates(HttpSession session, Model model, @RequestParam(value = "page", required = false,defaultValue = "0") Integer page,
+                                   @RequestParam(value = "size", required = false,defaultValue = "20") Integer size,
+                                   @RequestParam(value = "action", required = false) String action,
+                                   @RequestParam(value = "jobName", required = false) String jobName) {
+        CandidateDto candidate = (CandidateDto) session.getAttribute("candidateLogin");
+        PageDTO<JobDto> jobsMatchingWithCandidate = jobModel.getJobsMatchingWithCandidate(candidate.getId(), 50, page, size);
+        List<String> colors = List.of("primary", "secondary", "success", "warning", "info", "light", "dark");
+        String color = colors.get((int) (Math.random() * colors.size()));
+        model.addAttribute("color", color);
+        if (page == null){
+            page = 0;
         }
-        return "candidates-paging";
+        if (size == null){
+            size = 20;
+        }
+        if (action == null){
+            action = "jobsMatchingCandidate";
+        }
+        if (jobName == null){
+            jobName = "";
+        }
+        if (action.equalsIgnoreCase("jobsMatchingCandidate")){
+            model.addAttribute("action", action);
+            model.addAttribute("jobs", jobsMatchingWithCandidate);
+            model.addAttribute("candidateLogin", candidate);
+            return "candidates/candidates";
+        } else if (action.equalsIgnoreCase("showAll")) {
+            PageDTO<JobDto> jobs = jobModel.getJobsPaging(page, size);
+            model.addAttribute("action", action);
+            model.addAttribute("jobs", jobs);
+            model.addAttribute("candidateLogin", candidate);
+            return "candidates/candidates";
+        } else if (action.equalsIgnoreCase("search")) {
+            PageDTO<JobDto> jobs = jobModel.getJobsByJobName(jobName, page, size);
+            model.addAttribute("action", action);
+            model.addAttribute("jobs", jobs);
+            model.addAttribute("candidateLogin", candidate);
+            return "candidates/candidates";
+        }
+
+        return "candidates/candidates";
     }
 }

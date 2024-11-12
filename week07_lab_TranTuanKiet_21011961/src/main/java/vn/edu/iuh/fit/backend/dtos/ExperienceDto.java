@@ -10,9 +10,8 @@ import java.time.LocalDate;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @ToString
 public class ExperienceDto implements Serializable {
     Long id;

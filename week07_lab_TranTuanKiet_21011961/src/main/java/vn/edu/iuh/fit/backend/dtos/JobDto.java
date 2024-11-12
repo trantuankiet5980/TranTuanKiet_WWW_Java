@@ -1,6 +1,7 @@
 package vn.edu.iuh.fit.backend.dtos;
 
 import lombok.*;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,9 +10,8 @@ import java.util.List;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @ToString
 public class JobDto implements Serializable {
     Long id;

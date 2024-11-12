@@ -2,7 +2,6 @@ package vn.edu.iuh.fit.backend.dtos;
 
 import lombok.*;
 import vn.edu.iuh.fit.backend.enums.SkillLevel;
-
 import java.io.Serializable;
 
 /**
@@ -10,13 +9,13 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @ToString
 public class JobSkillDto implements Serializable {
-    JobSkillIdDto id;
-    SkillDto skill;
-    String moreInfos;
-    SkillLevel skillLevel;
+    private Long jobId;
+    private Long skillId;
+    private SkillDto skill;
+    private String moreInfos;
+    private SkillLevel skillLevel;
 }

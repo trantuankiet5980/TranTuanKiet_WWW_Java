@@ -1,21 +1,18 @@
 package vn.edu.iuh.fit.backend.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum SkillLevel {
-    BEGINNER("BEGINNER"),
-    INTERMEDIATE("INTERMEDIATE"),
-    ADVANCED("ADVANCED"),
-    PROFESSIONAL("PROFESSIONAL"),
-    MASTER("MASTER");
+    MASTER(1), BEGINER(2), ADVANCED(3), PROFESSIONAL(4), IMTERMEDIATE(5);
 
-    private String name;
-
-    SkillLevel(String name) {
-        this.name = name;
+    private Integer value;
+    SkillLevel(Integer value){
+        this.value = value;
     }
 
     @Override
     public String toString() {
-        return name;
+        return value.toString();
     }
-
 }

@@ -1,20 +1,18 @@
 package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 import vn.edu.iuh.fit.backend.enums.SkillType;
 
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "skill")
+@Builder
 public class Skill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,14 +25,16 @@ public class Skill {
     @Column(name = "skill_name")
     private String skillName;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "type")
+    @Enumerated(EnumType.STRING)
     private SkillType type;
 
-    @OneToMany(mappedBy = "skill")
-    private List<CandidateSkill> candidateSkills;
-
-    @OneToMany(mappedBy = "skill")
+    @OneToMany(mappedBy = "skill", fetch = FetchType.LAZY)
     private List<JobSkill> jobSkills;
 
+    public Skill(String skillDescription, String skillName, SkillType type) {
+        this.skillDescription = skillDescription;
+        this.skillName = skillName;
+        this.type = type;
+    }
 }

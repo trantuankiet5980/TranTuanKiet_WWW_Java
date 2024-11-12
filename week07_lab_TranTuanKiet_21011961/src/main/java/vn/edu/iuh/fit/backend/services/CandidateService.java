@@ -1,11 +1,15 @@
 package vn.edu.iuh.fit.backend.services;
 
-import org.springframework.data.domain.Page;
-import vn.edu.iuh.fit.backend.entities.Candidate;
+import vn.edu.iuh.fit.backend.dtos.CandidateDto;
+import vn.edu.iuh.fit.backend.dtos.PageDTO;
 
 import java.util.List;
 
 public interface CandidateService {
-    Page<Candidate> findAll(int pageNo, int pageSize, String sortBy, String sortDir);
-    List<Candidate> getAll();
+    List<CandidateDto> getAll();
+    CandidateDto getById(Long id);
+    CandidateDto save(CandidateDto candidateDto);
+    List<CandidateDto> getCandidatePaging(int page, int size);
+    CandidateDto findByEmailAndPhone(String email, String phone);
+    PageDTO<CandidateDto> findCandidateMatchingJob(Long jobId, int per, int page, int size);
 }

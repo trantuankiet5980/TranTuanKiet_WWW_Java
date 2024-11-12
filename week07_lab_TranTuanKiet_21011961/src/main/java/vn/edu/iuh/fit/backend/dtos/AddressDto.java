@@ -10,9 +10,8 @@ import java.io.Serializable;
  */
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 @ToString
 public class AddressDto implements Serializable {
     Long id;

@@ -13,11 +13,11 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class JobSkillId implements Serializable {
-    private static final long serialVersionUID = -1361662885267825008L;
+    private static final long serialVersionUID = -7711763959949302557L;
     @Column(name = "job_id", nullable = false)
     private Long jobId;
 

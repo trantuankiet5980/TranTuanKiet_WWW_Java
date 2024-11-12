@@ -1,10 +1,7 @@
 package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -14,28 +11,19 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "experience")
+@Builder
 public class Experience {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ex_id", nullable = false)
-    private long id;
-
+    private Long id;
     @Column(name = "to_date")
     private LocalDate toDate;
-
-    @Column(name = "from_date", nullable = false)
-    private LocalDate fromDate;
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "can_id", nullable = false)
     private Candidate candidate;
-
-    @Column(name = "company_name", nullable = false)
+    @Column(name = "from_date")
+    private LocalDate fromDate;
     private String companyName;
-
-    @Column(name = "role", nullable = false)
     private String role;
-
-    @Column(name = "work_desc", length = 2000)
+    @Column(name = "work_desc")
     private String workDescription;
 }

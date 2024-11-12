@@ -1,18 +1,16 @@
 package vn.edu.iuh.fit.backend.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import vn.edu.iuh.fit.backend.enums.SkillLevel;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "candidate_skill")
+@Builder
 public class CandidateSkill {
     @EmbeddedId
     private CandidateSkillId id;
@@ -20,18 +18,19 @@ public class CandidateSkill {
     @MapsId("canId")
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "can_id", nullable = false)
-    private Candidate can;
+    private Candidate candidate;
 
     @MapsId("skillId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "skill_id", nullable = false)
     private Skill skill;
 
     @Column(name = "more_infos", length = 1000)
     private String moreInfos;
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "skill_level", nullable = false)
+    @Enumerated(EnumType.STRING)
     private SkillLevel skillLevel;
+
 
 }
